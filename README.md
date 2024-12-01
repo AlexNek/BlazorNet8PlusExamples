@@ -2,7 +2,7 @@
 
 ### Overview
 
-This repository complements the concepts covered in the "[Blazor for Developers](dev.md)" article by providing practical demonstrations of various render modes available in Blazor from .NET 8 onwards. Additionally, it explores two authentication approaches for .Net 9: one leveraging Microsoft Identity and the other using a custom authentication mechanism.
+This repository complements the concepts covered in the "[Blazor for Developers](https://github.com/AlexNek/Blazor-for-You/blob/master/ForDevelopers/readme.md)" article by providing practical demonstrations of various render modes available in Blazor from .NET 8 onwards. Additionally, it explores two authentication approaches for .Net 9: one leveraging Microsoft Identity and the other using a custom authentication mechanism.
 
 **Key Features:**
 
@@ -12,7 +12,7 @@ This repository complements the concepts covered in the "[Blazor for Developers]
 
 **By exploring this repository, you'll be able to:**
 
-* Bridge theory with practice: Apply the concepts from "[Blazor for Developers](dev.md)" article to build real Blazor applications.
+* Bridge theory with practice: Apply the concepts from "[Blazor for Developers](https://github.com/AlexNek/Blazor-for-You/blob/master/ForDevelopers/readme.md)" article to build real Blazor applications.
 * Make informed decisions about render modes and authentication approaches.
 * Enhance your overall Blazor development skills with practical experience.
 
