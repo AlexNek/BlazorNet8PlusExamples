@@ -88,6 +88,7 @@ It is possible to simulate button press in SSR mode too. You can see that two di
 ### Counter page mode transition observation
 More interesting is when you switch pages from one rendering mode to another.  
 ![image](docu/images/menu.png)
+
 Try to switch 2->1 and 3->1. You can see that component with auto render mode still renders in the previous rendering mode, client or server, and not as you might expect in client mode only.
 
 #### Interactive Auto render mode
