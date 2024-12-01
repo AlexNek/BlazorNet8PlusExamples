@@ -1,0 +1,101 @@
+﻿@using System.Runtime.InteropServices
+@using BlazorNet9RenderModes.Client.Services
+
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@inject ICounterStateService CounterService
+
+<PageTitle>@Title</PageTitle>
+<div class="border-dotted">
+
+    <ShowRenderMode />
+    <h1>@Title</h1>
+
+    <p role="status">@Id: Current count: @currentCount, Init count: @CounterService.GetCounterInit(Id) (@CounterService.GetAllInit())</p>
+
+    <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = "Counter";
+
+    [Parameter] public string Id { get; set; } = "";
+
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        CounterService.IncrementManual();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        currentCount = CounterService.CounterManual;
+        CounterService.IncrementInit(Id);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await Task.CompletedTask;
+
+        // try to fix problem: https://github.com/dotnet/aspnetcore/issues/53799
+        if (firstRender)
+        {
+            bool isBrowser = OperatingSystem.IsBrowser();
+            //var isWebAssembly = await JSRuntime.InvokeAsync<bool>("isWebAssemblySupported");
+            //var isWebAssembly = await JSRuntime.InvokeAsync<bool>("isWebAssemblyReady");
+            // if (isWebAssembly && !OperatingSystem.IsBrowser())
+            // {
+            //     NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+            // }
+            CheckIfWasm();
+            try
+            {
+                //bool isWasmReady = await JSRuntime.InvokeAsync<bool>("isWebAssemblyReady");
+                bool isWasmReady = RuntimeInformation.ProcessArchitecture == Architecture.Wasm;
+                Console.WriteLine($"Title:{Title}, is in browser: {isBrowser}, is WASM ready:{isWasmReady}");
+                if (isWasmReady)
+                {
+                    string uri = NavigationManager.Uri;
+                    if (!isBrowser)
+                    {
+                        NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
+                    }
+                }
+                else
+                {
+                    // Handle the case where the runtime is not ready
+                    Console.WriteLine("WebAssembly runtime is not ready yet.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions during the interop call
+                Console.WriteLine($"Error checking WebAssembly readiness: {ex.Message}");
+            }
+        }
+    }
+    
+    private void CheckIfWasm()
+    {
+        if (JSRuntime is IJSInProcessRuntime jsInProcess)
+        {
+            // We're in WASM, use synchronous JS interop
+            jsInProcess.Invoke<object>("console.log", $"Title:{Title} running as WASM");
+        }
+        else
+        {
+            // We're not in WASM, use async JS interop
+            JSRuntime.InvokeVoidAsync("console.log", $"Title:{Title} Not running as WASM");
+        }
+    }
+}
+
+
+@code {
+    
+}

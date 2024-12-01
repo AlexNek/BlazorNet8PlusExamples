@@ -1,0 +1,55 @@
+﻿
+@using System.Diagnostics
+@using BlazorNet9RenderModes.Client.Model
+@if (Children != null && Children.Any())
+{
+    <div style="border: 1px solid black; padding: 10px; margin: 5px; background-color: @BackgroundColor;">
+        <p>@Text</p> <ShowRenderMode/>
+        @foreach (var child in Children)
+        {
+            try
+            {
+                switch (child.RenderMode)
+                {
+                    case null:
+                    case HierarchyRectangleModel.ERenderMode.Default:
+                        <HierarchyRectangle Text="@child.Text" Children="@child.Children" BackgroundColor="@child.BackgroundColor"  />
+                        break;
+                    case HierarchyRectangleModel.ERenderMode.InteractiveServer:
+                        <HierarchyRectangle Text="@child.Text" Children="@child.Children" BackgroundColor="@child.BackgroundColor" @rendermode="InteractiveServer" />
+                        break;
+                    case HierarchyRectangleModel.ERenderMode.InteractiveWebAssembly:
+                        <HierarchyRectangle Text="@child.Text" Children="@child.Children" BackgroundColor="@child.BackgroundColor" @rendermode="InteractiveWebAssembly" />
+                        break;
+                    case HierarchyRectangleModel.ERenderMode.InteractiveAuto:
+                        <HierarchyRectangle Text="@child.Text" Children="@child.Children" BackgroundColor="@child.BackgroundColor" @rendermode="InteractiveAuto" />
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex);
+                BackgroundColor = "red";
+            }
+        }
+    </div>
+}
+else
+{
+    <div style="border: 1px solid black; padding: 10px; margin: 5px; background-color: @BackgroundColor;">
+        <p>@Text</p><ShowRenderMode />
+    </div>
+}
+
+@code {
+    [Parameter]
+    public string Text { get; set; } = "";
+
+    [Parameter]
+    public string BackgroundColor { get; set; } = "white"; // Default background color
+
+    [Parameter]
+    public List<HierarchyRectangleModel> Children { get; set; }
+}

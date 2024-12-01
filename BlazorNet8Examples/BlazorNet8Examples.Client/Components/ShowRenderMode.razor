@@ -1,0 +1,15 @@
+﻿@inject NavigationManager NavigationManager
+@using BlazorNet8RenderModes.Common
+
+@inject IRenderModeService RenderModeService
+
+<div>
+    <p>Current Render Mode: <strong>@RenderModeService.GetRenderMode()</strong></p>
+</div>
+
+
+
+@code {
+    
+}
+

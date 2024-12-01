@@ -1,0 +1,12 @@
+﻿@inject NavigationManager NavigationManager
+
+<div>
+    <p>Current Render Mode: <strong>@((RendererInfo.IsInteractive ? "Interactive " : " ") + RendererInfo.Name) </strong> Assigned: @(AssignedRenderMode?.ToString()?.Split('.')?.Last())</p>
+</div>
+
+
+
+@code {
+    
+}
+

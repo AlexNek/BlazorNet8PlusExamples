@@ -1,0 +1,118 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager Navigation
+@inject HttpClient Http
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Blazor Authentication Test</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="user-test-ssr">
+                <span class="bi" aria-hidden="true"></span> User test page SSR
+            </NavLink>
+            <NavLink class="nav-link" href="user-test-interactive">
+                <span class="bi" aria-hidden="true"></span> User test component interactive
+            </NavLink>
+            <NavLink class="nav-link" href="user-test-wasm">
+                <span class="bi" aria-hidden="true"></span> User test page interactive WASM
+            </NavLink>
+        </div>
+        <AuthorizeView>
+            <Authorized>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="protected">
+                        <span class="bi bi-shield-lock-fill-nav-menu" aria-hidden="true"></span> Protected
+                    </NavLink>
+                </div>
+
+                @if (!_isAuthenticated)
+                {
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="login">
+                            <span class="bi bi-box-arrow-in-right-nav-menu" aria-hidden="true"></span> Login
+                        </NavLink>
+                    </div>
+                }
+                else
+                {
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="logout-page-client">
+                            <span class="bi bi-box-arrow-right-nav-menu" aria-hidden="true"></span> Logout over client
+                        </NavLink>
+                    </div>
+
+                    <div class="nav-item px-3">
+                        <NavLink class="nav-link" href="logout-page-server">
+                            <span class="bi bi-box-arrow-right-nav-menu" aria-hidden="true"></span> Logout over server
+                        </NavLink>
+                    </div>
+                    <div class="nav-item px-3">
+                        <form action="/logout-endpoint" method="post">
+                            <AntiforgeryToken />
+                            <input type="hidden" name="returnUrl" value="user-test-interactive" />
+                            <button type="submit" class="nav-link">
+                                <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout over endpoint
+                            </button>
+                        </form>
+                    </div>
+                }
+            </Authorized>
+            <NotAuthorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="login">
+                        <span class="bi bi-box-arrow-in-right-nav-menu" aria-hidden="true"></span> Login
+                    </NavLink>
+                </div>
+                
+            </NotAuthorized>
+
+        </AuthorizeView>
+    </nav>
+</div>
+
+@code {
+
+    private bool _isAuthenticated = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        if (authState.User.Identity != null)
+        {
+            _isAuthenticated = authState.User.Identity.IsAuthenticated;
+        }
+    }
+
+    // private async Task Logout()
+    // {
+    //     await Http.GetAsync("/logout-http");
+    //     isAuthenticated = false;
+    //     Navigation.NavigateTo("login");
+    // }
+}

@@ -1,0 +1,23 @@
+﻿@page "/protected"
+@using Microsoft.AspNetCore.Authorization
+@using BlazorAuthentication.Client.Components
+@using Microsoft.AspNetCore.Components.Authorization
+@attribute [Authorize]
+@rendermode InteractiveServer
+
+@inject NavigationManager Navigation
+
+<h3>Protected Content</h3>
+
+<ShowRenderMode/>
+<p>You are authenticated!</p>
+
+<button @onclick="Logout">Logout over client</button>
+
+@code {
+    private async Task Logout()
+    {
+        await Task.CompletedTask;        
+        Navigation.NavigateTo("/logout-page-client");
+    }
+}

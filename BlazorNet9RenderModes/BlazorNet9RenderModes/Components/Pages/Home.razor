@@ -1,0 +1,16 @@
+﻿@page "/"
+@using BlazorNet9RenderModes.Client.Components
+
+<PageTitle>Home</PageTitle>
+
+<h1>Render Mode test</h1>
+<div style="display: flex; gap: 10px;">
+    <Counter Id="s" Title="Counter Page Default (SSR)" />
+    <CounterSsr Id="id1" Title="Counter SSR Button" />
+    <CounterSsr Id="id2" Title="Counter SSR Button"  />
+</div>
+
+<Counter Id="is" Title="Counter Server" @rendermode="InteractiveServer" />
+<Counter Id="ic" Title="Counter Client" @rendermode="InteractiveWebAssembly" />
+<Counter Id="ia" Title="Counter Auto" @rendermode="InteractiveAuto" />
+

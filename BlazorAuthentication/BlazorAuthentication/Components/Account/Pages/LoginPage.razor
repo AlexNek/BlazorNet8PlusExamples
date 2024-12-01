@@ -1,0 +1,31 @@
+﻿@page "/login"
+@using BlazorAuthentication.Client.Components
+
+@inject NavigationManager Navigation
+
+<h3>Login</h3>
+<ShowRenderMode/>
+
+@if (!string.IsNullOrEmpty(_errorMessage))
+{
+    <div class="alert alert-danger">@_errorMessage</div>
+}
+
+<EditForm Model="@_loginModel" FormName="login-data" OnValidSubmit="@HandleLogin" style="width: 200px;">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Email:</label>
+        <InputText @bind-Value="_loginModel.Email" class="form-control" />
+        <ValidationMessage For="@(() => _loginModel.Email)" />
+    </div>
+
+    <div class="form-group">
+        <label>Password:</label>
+        <InputText @bind-Value="_loginModel.Password" type="password" class="form-control" />
+        <ValidationMessage For="@(() => _loginModel.Password)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</EditForm>

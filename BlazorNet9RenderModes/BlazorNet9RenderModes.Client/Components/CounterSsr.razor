@@ -1,0 +1,37 @@
+﻿@using Blazor.SsrButton
+
+@inject NavigationManager NavigationManager
+<div class="border-dotted">
+    <ShowRenderMode />
+    <h2>@Title '@Id'</h2>
+
+    <p>Current count: @_currentCount</p>
+
+    <SsrButton
+        Text="Click me SSR"
+        Parameters="_parameters"/>
+</div>
+
+@code {
+    [Parameter] public string Id { get; set; } = "";
+    private int _currentCount = 0;
+    
+    [Parameter]
+    public string Title { get; set; } = "Counter";
+
+    private DynamicParameters _parameters = new DynamicParameters();
+
+    protected override void OnInitialized()
+    {
+        var uri = new Uri(NavigationManager.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+        
+        if (int.TryParse(query[$"count_{Id}"], out int count))
+        {
+            _currentCount = count;
+        }
+
+        _parameters.AddParameter($"count_{Id}", (_currentCount + 1).ToString());
+
+    }
+}

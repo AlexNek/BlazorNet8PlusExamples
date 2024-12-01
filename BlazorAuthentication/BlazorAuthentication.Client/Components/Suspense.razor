@@ -1,0 +1,36 @@
+﻿@if (IsLoaded)
+{
+    @WasmContent
+}
+else
+{
+    @FallbackContent
+}
+
+@code {
+    [Parameter]
+    public RenderFragment WasmContent { get; set; }
+
+    [Parameter]
+    public RenderFragment FallbackContent { get; set; }
+
+    private bool IsLoaded { get; set; }
+
+    protected override void OnInitialized()
+    {
+        IsLoaded = false;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Task.Delay(10); // Small delay to ensure client-side execution
+            if (RendererInfo.Name == "WebAssembly")
+            {
+                IsLoaded = true;
+                StateHasChanged();
+            }
+        }
+    }
+}

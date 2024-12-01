@@ -1,0 +1,34 @@
+﻿@page "/user-test-interactive"
+
+@using Microsoft.AspNetCore.Components.Authorization
+@using BlazorAuthentication.Client.Components
+
+<h3>User Test Page, Buttons - Interactive Auto mode</h3>
+Page: <ShowRenderMode />
+<p>Page can be viewed by both anonymous and authorized users with different content</p>
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            <h1>Welcome back, user!</h1>
+        </Authorized>
+        <NotAuthorized>
+            <p>Please log in to access this content.</p>
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
+
+<p>Information from client side (WASM)</p>
+
+<UserInfoComponent @rendermode="InteractiveWebAssembly" />
+
+<LogoutButtons @rendermode="InteractiveAuto" />
+
+@* Will nor working with render mode set on component level *@
+@* <RenderFragmentTest @rendermode="InteractiveAuto">
+        <h1>Test Interactive Render Fragment</h1>
+        <p>This is some content.</p>
+</RenderFragmentTest> 
+ *@
+
+@code {
+}

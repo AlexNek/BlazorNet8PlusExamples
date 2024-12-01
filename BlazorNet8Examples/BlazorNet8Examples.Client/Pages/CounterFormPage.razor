@@ -1,0 +1,37 @@
+﻿@page "/counter-form-page"
+@using BlazorNet8RenderModes.Client.Components
+
+
+<PageTitle>Counter</PageTitle>
+<ShowRenderMode />
+<h1>Counter Form</h1>
+
+<EditForm Model="@Model" FormName="CounterForm" OnValidSubmit="HandleSubmit">
+    <p role="status">Current count: @Model.CurrentCount</p>
+   @*  <input type="hidden" name="CurrentCount" value="@Model.CurrentCount" /> *@
+    <InputNumber @bind-Value="Model.CurrentCount" style="display: none;" />
+    <button type="submit" class="btn btn-primary">Click me</button>
+</EditForm>
+
+@code {
+
+    [SupplyParameterFromForm]
+    public CounterModel Model { get; set; } = new();
+
+    public class CounterModel
+    {
+        public int CurrentCount { get; set; } = 0;
+    }
+
+    protected override void OnInitialized()
+    {
+        //Ensure that Model is always initialized.
+        Model ??= new CounterModel();
+    }
+
+    private void HandleSubmit(EditContext obj)
+    {
+        Model.CurrentCount++;
+    }
+
+}

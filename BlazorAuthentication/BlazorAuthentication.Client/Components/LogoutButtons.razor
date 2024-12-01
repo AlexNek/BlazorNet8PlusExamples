@@ -1,0 +1,26 @@
+﻿@* Must be called from interactive render mode *@
+
+@inject NavigationManager Navigation
+@if (RendererInfo.IsInteractive)
+{
+    <button @onclick="LogoutClient">Logout over client</button>
+    <button @onclick="LogoutServer">Logout over server</button>
+}
+else
+{
+    <div>Buttons Component must be used in interactive mode, but found @RendererInfo.Name</div>
+}
+
+@code {
+    private async Task LogoutClient()
+    {
+        await Task.CompletedTask;
+        Navigation.NavigateTo("/logout-page-client?origin=user-test-interactive");
+    }
+    private async Task LogoutServer()
+    {
+        await Task.CompletedTask;
+        Navigation.NavigateTo("/logout-page-server?origin=user-test-interactive");
+        //Navigation.NavigateTo("/logout-page-server?origin=user-test-wasm");
+    }
+}

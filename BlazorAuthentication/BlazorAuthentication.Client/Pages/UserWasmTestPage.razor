@@ -1,0 +1,32 @@
+﻿@page "/user-test-wasm"
+@rendermode InteractiveWebAssembly
+
+@using Microsoft.AspNetCore.Components.Authorization
+@using BlazorAuthentication.Client.Components
+<h3>User Test Page WASM</h3>
+<ShowRenderMode/>
+<p>Page can be viewed by both anonymous and authorized users with different content</p>
+<CascadingAuthenticationState>
+    <AuthorizeView>
+        <Authorized>
+            <h1>Welcome back, user!</h1>
+        </Authorized>
+        <NotAuthorized>
+            <p>Please log in to access this content.</p>
+        </NotAuthorized>
+    </AuthorizeView>
+</CascadingAuthenticationState>
+
+Information from client side (WASM)
+<UserInfoComponent />
+
+<RenderFragmentTest>
+    <ChildContent>
+        <h1>Test Interactive WASM page. Render Fragment</h1>
+        <p>This is some content.</p>
+        <LogoutButtons />
+    </ChildContent>
+</RenderFragmentTest>
+@code {
+
+}

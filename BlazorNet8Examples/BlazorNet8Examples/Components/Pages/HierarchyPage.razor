@@ -1,0 +1,73 @@
+﻿@page "/hierarchy"
+@using BlazorNet8RenderModes.Client.Model
+@using BlazorNet8RenderModes.Client.Components
+
+
+<HierarchyRectangle Text="Root Page" BackgroundColor="green" Children="@_hierarchyData"/>
+
+@code {
+
+    private readonly List<HierarchyRectangleModel> _hierarchyData = new List<HierarchyRectangleModel>
+                                                                        {
+                                                                            new HierarchyRectangleModel
+                                                                                {
+                                                                                    Text = "Level Server",
+                                                                                    BackgroundColor = "green",
+                                                                                    RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveServer,
+                                                                                    Children = new List<HierarchyRectangleModel>
+                                                                                                   {
+                                                                                                       new HierarchyRectangleModel { Text = "Level Server", BackgroundColor = "green", RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveServer, },
+                                                                                                       new HierarchyRectangleModel { Text = "Level Auto", BackgroundColor = "green", RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveAuto,
+                                                                                                                                       Children = new List<HierarchyRectangleModel>
+                                                                                                                                                      {
+                                                                                                                                                          new HierarchyRectangleModel { Text = "Level Server", BackgroundColor = "green", RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveServer, }, 
+                                                                                                                                                          new HierarchyRectangleModel { Text = "Level Auto", BackgroundColor = "green", RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveAuto, },
+                                                                                                                                                          new HierarchyRectangleModel {
+                                                                                                                                                                                              Text = "Level Client", BackgroundColor = "red",
+                                                                                                                                                                                              //RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveWebAssembly, 
+                                                                                                                                                                                      },
+                                                                                                                                                      }
+
+                                                                                                                                       },
+                                                                                                       new HierarchyRectangleModel
+                                                                                                           {
+                                                                                                               Text = "Level Client", BackgroundColor = "red",
+                                                                                                               //RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveWebAssembly,
+                                                                                                           }
+                                                                                                   }
+                                                                                },
+                                                                            new HierarchyRectangleModel
+                                                                                {
+                                                                                    Text = "Level Auto",
+                                                                                    BackgroundColor = "green",
+                                                                                    RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveAuto,
+                                                                                    Children = new List<HierarchyRectangleModel>
+                                                                                                   {
+                                                                                                       new HierarchyRectangleModel
+                                                                                                           {
+                                                                                                               Text = "Level Server", BackgroundColor = "red",
+                                                                                                               //RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveServer,
+                                                                                                           },
+                                                                                                       new HierarchyRectangleModel { Text = "Level Auto", BackgroundColor = "green", RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveAuto, },
+                                                                                                       new HierarchyRectangleModel { Text = "Level Client", BackgroundColor = "green", RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveWebAssembly, },
+                                                                                                   }
+                                                                                },
+                                                                            new HierarchyRectangleModel
+                                                                                {
+                                                                                    Text = "Level Client",
+                                                                                    BackgroundColor = "green",
+                                                                                    RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveWebAssembly,
+                                                                                    Children = new List<HierarchyRectangleModel>
+                                                                                                   {
+                                                                                                       new HierarchyRectangleModel
+                                                                                                           {
+                                                                                                               Text = "Level Server", BackgroundColor = "red",
+                                                                                                               //RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveServer,
+                                                                                                           },
+                                                                                                       new HierarchyRectangleModel { Text = "Level Auto", BackgroundColor = "green", RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveAuto, },
+                                                                                                       new HierarchyRectangleModel { Text = "Level Client", BackgroundColor = "green", RenderMode = HierarchyRectangleModel.ERenderMode.InteractiveWebAssembly, },
+                                                                                                   }
+                                                                                }
+                                                                        };
+
+}

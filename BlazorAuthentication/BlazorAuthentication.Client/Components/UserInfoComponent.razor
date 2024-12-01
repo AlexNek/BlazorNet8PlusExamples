@@ -1,0 +1,56 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NavManager
+<div>@_statusTitle</div>
+
+@code {
+    private string? _locale;
+    private string? _name;
+
+    private string _statusTitle;
+
+
+    private string? _email;
+
+    private bool _isAuthenticated;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        _name = "Anonymous";
+        if (user.Identity is { IsAuthenticated: true })
+        {
+            _locale = user.FindFirst(ClaimTypes.Locality)?.Value;
+            _email = user.FindFirst(ClaimTypes.Email)?.Value;
+            _name = user.Identity.Name;
+            _isAuthenticated = true;
+        }
+
+        UpdateStatusTitle();
+    }
+
+    private void UpdateStatusTitle()
+    {
+        if (string.IsNullOrWhiteSpace(_email))
+        {
+            _statusTitle = $"User {_name}";
+        }
+        else
+        {
+            _statusTitle = $"User {_name}, e-mail {_email}";
+        }   
+    }
+
+    private void OnLogin()
+    {
+        NavManager.NavigateTo("/login");
+    }
+
+    private void OnLogout()
+    {
+        NavManager.NavigateTo("/logout", true);
+    }
+}
+

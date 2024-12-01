@@ -1,0 +1,93 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorNet8RenderModes", "BlazorNet8Examples\BlazorNet8Examples\BlazorNet8RenderModes.csproj", "{2A23B235-C983-4AEA-A311-20C67240CA00}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorNet8RenderModes.Client", "BlazorNet8Examples\BlazorNet8Examples.Client\BlazorNet8RenderModes.Client.csproj", "{EA0DACF0-B491-4553-A202-91926DD518F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorNet8RenderModes.Common", "BlazotNet8Examples.Common\BlazorNet8RenderModes.Common.csproj", "{BE7C92E6-C76A-45E1-8303-E75EC0A0C02E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RenderMode", "RenderMode", "{54CEB7AE-DC6A-40AE-AC48-EAA1973C2607}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{C7E655CC-C77F-4095-8BE2-184CECCF0184}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAuthentication", "BlazorAuthentication\BlazorAuthentication\BlazorAuthentication.csproj", "{2E7106ED-130B-4830-AAAB-C56DB8B09033}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAuthentication.Client", "BlazorAuthentication\BlazorAuthentication.Client\BlazorAuthentication.Client.csproj", "{6A2D8282-189E-4BBA-825F-12E849782C03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorNet9RenderModes", "BlazorNet9RenderModes\BlazorNet9RenderModes\BlazorNet9RenderModes.csproj", "{90F343A8-F83D-4BB1-A66E-41C890BC2E88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorNet9RenderModes.Client", "BlazorNet9RenderModes\BlazorNet9RenderModes.Client\BlazorNet9RenderModes.Client.csproj", "{6921A623-92DF-4930-B632-B4D5C3C0C312}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAuthenticationV2", "BlazorAuthenticationV2\BlazorAuthenticationV2\BlazorAuthenticationV2.csproj", "{6822752E-579C-449A-B517-CB92AE183E7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorAuthenticationV2.Client", "BlazorAuthenticationV2\BlazorAuthenticationV2.Client\BlazorAuthenticationV2.Client.csproj", "{6A32AE21-9C84-473E-936C-F456D97E25FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_SolutionItems", "_SolutionItems", "{012E8F54-44B8-49C7-9197-EBBE08E8D5D2}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A23B235-C983-4AEA-A311-20C67240CA00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A23B235-C983-4AEA-A311-20C67240CA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A23B235-C983-4AEA-A311-20C67240CA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A23B235-C983-4AEA-A311-20C67240CA00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA0DACF0-B491-4553-A202-91926DD518F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA0DACF0-B491-4553-A202-91926DD518F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA0DACF0-B491-4553-A202-91926DD518F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA0DACF0-B491-4553-A202-91926DD518F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE7C92E6-C76A-45E1-8303-E75EC0A0C02E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE7C92E6-C76A-45E1-8303-E75EC0A0C02E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE7C92E6-C76A-45E1-8303-E75EC0A0C02E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE7C92E6-C76A-45E1-8303-E75EC0A0C02E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E7106ED-130B-4830-AAAB-C56DB8B09033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E7106ED-130B-4830-AAAB-C56DB8B09033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E7106ED-130B-4830-AAAB-C56DB8B09033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E7106ED-130B-4830-AAAB-C56DB8B09033}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A2D8282-189E-4BBA-825F-12E849782C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A2D8282-189E-4BBA-825F-12E849782C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A2D8282-189E-4BBA-825F-12E849782C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A2D8282-189E-4BBA-825F-12E849782C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F343A8-F83D-4BB1-A66E-41C890BC2E88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F343A8-F83D-4BB1-A66E-41C890BC2E88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F343A8-F83D-4BB1-A66E-41C890BC2E88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F343A8-F83D-4BB1-A66E-41C890BC2E88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6921A623-92DF-4930-B632-B4D5C3C0C312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6921A623-92DF-4930-B632-B4D5C3C0C312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6921A623-92DF-4930-B632-B4D5C3C0C312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6921A623-92DF-4930-B632-B4D5C3C0C312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6822752E-579C-449A-B517-CB92AE183E7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6822752E-579C-449A-B517-CB92AE183E7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6822752E-579C-449A-B517-CB92AE183E7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6822752E-579C-449A-B517-CB92AE183E7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A32AE21-9C84-473E-936C-F456D97E25FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A32AE21-9C84-473E-936C-F456D97E25FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A32AE21-9C84-473E-936C-F456D97E25FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A32AE21-9C84-473E-936C-F456D97E25FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2A23B235-C983-4AEA-A311-20C67240CA00} = {54CEB7AE-DC6A-40AE-AC48-EAA1973C2607}
+		{EA0DACF0-B491-4553-A202-91926DD518F3} = {54CEB7AE-DC6A-40AE-AC48-EAA1973C2607}
+		{BE7C92E6-C76A-45E1-8303-E75EC0A0C02E} = {54CEB7AE-DC6A-40AE-AC48-EAA1973C2607}
+		{2E7106ED-130B-4830-AAAB-C56DB8B09033} = {C7E655CC-C77F-4095-8BE2-184CECCF0184}
+		{6A2D8282-189E-4BBA-825F-12E849782C03} = {C7E655CC-C77F-4095-8BE2-184CECCF0184}
+		{90F343A8-F83D-4BB1-A66E-41C890BC2E88} = {54CEB7AE-DC6A-40AE-AC48-EAA1973C2607}
+		{6921A623-92DF-4930-B632-B4D5C3C0C312} = {54CEB7AE-DC6A-40AE-AC48-EAA1973C2607}
+		{6822752E-579C-449A-B517-CB92AE183E7D} = {C7E655CC-C77F-4095-8BE2-184CECCF0184}
+		{6A32AE21-9C84-473E-936C-F456D97E25FF} = {C7E655CC-C77F-4095-8BE2-184CECCF0184}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2F65983-D327-44E1-A3EA-CF72A37D7433}
+	EndGlobalSection
+EndGlobal
