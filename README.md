@@ -86,7 +86,7 @@ It is possible to simulate button press in SSR mode too. You can see that two di
 >** Note:** Be aware that `OnInitialAsync' is called twice by interactive components. Use cache or render mode checking to prevent possible duplicate API calls.
 
 ### Counter page mode transition observation
-More interesting is when you switch pages from one rendering mode to another.
+More interesting is when you switch pages from one rendering mode to another.  
 ![image](docu/images/menu.png)
 Try to switch 2->1 and 3->1. You can see that component with auto render mode still renders in the previous rendering mode, client or server, and not as you might expect in client mode only.
 
