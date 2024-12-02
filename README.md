@@ -7,7 +7,7 @@ This repository complements the concepts covered in the "[Blazor for Developers]
 **Key Features:**
 
 - **Hands-on Learning:** Experiment with different render modes (WebAssembly, Server-Side Rendering (SSR), and Hybrid) to understand their nuances and choose the best fit for your project. [Demo 1](https://blazornet9rendermodes.azurewebsites.net)
- **Authentication Strategies:**  Explore securing your Blazor applications with both Microsoft Identity and custom mechanisms, giving you more flexibility.
+ **Authentication Strategies:**  Explore securing your Blazor applications with both Microsoft Identity and custom mechanisms, giving you more flexibility. [Demo 2](https://blazorauthentication202412.azurewebsites.net)
 - **Detailed Explanations:** Gain insights into the underlying concepts and rationale behind each approach, empowering informed decision-making.
 
 **By exploring this repository, you'll be able to:**
