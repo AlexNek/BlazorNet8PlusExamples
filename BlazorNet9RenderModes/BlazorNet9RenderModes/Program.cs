@@ -9,7 +9,7 @@ namespace BlazorNet9RenderModes
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddSingleton<ICounterStateService, CounterStateServer>();
+            builder.Services.AddScoped<ICounterStateService, CounterStateServer>();
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents()
