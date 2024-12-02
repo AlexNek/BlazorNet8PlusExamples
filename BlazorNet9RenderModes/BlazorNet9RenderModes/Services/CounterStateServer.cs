@@ -8,16 +8,17 @@ namespace BlazorNet9RenderModes.Services
     {
         private readonly Dictionary<string, int> _counterInit = new();
 
-        public CounterStateServer()
-        {
-            CounterManual = 0;
-        }
-
         public int CounterManual { get; private set; }
 
-        public int GetCounterInit(string id)
+        public CounterStateServer()
         {
-            return _counterInit.GetValueOrDefault(id, 0); // Return 0 if the id doesn't exist in the dictionary
+            ClearAll();
+        }
+
+        public void ClearAll()
+        {
+            CounterManual = 0;
+            _counterInit.Clear();
         }
 
         public string GetAllInit()
@@ -39,12 +40,15 @@ namespace BlazorNet9RenderModes.Services
                     sb.Append($"{item.Key}");
                 }
             }
+
             return sb.ToString();
         }
 
-        public void IncrementManual()
+        public int GetCounterInit(string id)
         {
-            CounterManual++;
+            return _counterInit.GetValueOrDefault(
+                id,
+                0); // Return 0 if the id doesn't exist in the dictionary
         }
 
         public void IncrementInit(string id)
@@ -53,6 +57,11 @@ namespace BlazorNet9RenderModes.Services
             {
                 _counterInit[id]++;
             }
+        }
+
+        public void IncrementManual()
+        {
+            CounterManual++;
         }
     }
 }

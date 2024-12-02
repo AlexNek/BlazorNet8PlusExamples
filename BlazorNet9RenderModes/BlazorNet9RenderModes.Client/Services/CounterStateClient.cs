@@ -2,28 +2,23 @@
 
 namespace BlazorNet9RenderModes.Client.Services;
 
-public class CounterStateClient: ICounterStateService
+public class CounterStateClient : ICounterStateService
 {
-   
     private readonly Dictionary<string, int> _counterInit = new();
+
+    public int CounterManual { get; private set; }
 
     public CounterStateClient()
     {
         CounterManual = -1;
     }
 
-    public int CounterManual { get; private set; }
-
-
-    public int GetCounterInit(string id)
+    public void ClearAll()
     {
-        return _counterInit.GetValueOrDefault(id, 0); // Return 0 if the id doesn't exist in the dictionary
+        CounterManual = 0;
+        _counterInit.Clear();
     }
 
-    public void IncrementManual()
-    {
-        CounterManual++;
-    }
     public string GetAllInit()
     {
         StringBuilder sb = new();
@@ -43,13 +38,28 @@ public class CounterStateClient: ICounterStateService
                 sb.Append($"{item.Key}");
             }
         }
+
         return sb.ToString();
     }
+
+    public int GetCounterInit(string id)
+    {
+        return
+            _counterInit.GetValueOrDefault(
+                id,
+                0); // Return 0 if the id doesn't exist in the dictionary
+    }
+
     public void IncrementInit(string id)
     {
         if (!_counterInit.TryAdd(id, 1))
         {
             _counterInit[id]++;
         }
+    }
+
+    public void IncrementManual()
+    {
+        CounterManual++;
     }
 }

@@ -10,5 +10,7 @@
         public void IncrementInit(string id);
 
         string GetAllInit();
+
+        void ClearAll();
     }
 }

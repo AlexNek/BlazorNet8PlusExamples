@@ -1,0 +1,41 @@
+﻿@page "/clear-server-counters"
+@using BlazorNet9RenderModes.Client.Services
+@attribute [ExcludeFromInteractiveRouting]
+@inject ICounterStateService CounterService
+@inject NavigationManager Navigation
+
+@* <head>
+    <meta http-equiv="refresh" content="1; URL=@ReturnUrl">
+</head> *@
+
+<h3>Clear Server Counters Page</h3>
+
+@code {
+    [SupplyParameterFromQuery(Name = "returnUrl")]
+    public string ReturnUrl { get; set; } = "/";
+
+    [CascadingParameter] 
+    public HttpContext? HttpContext { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        CounterService.ClearAll();
+
+        // Add small delay to ensure service operation completes
+        await Task.Delay(50);
+        
+        // Navigate and refresh page
+        //https://github.com/dotnet/aspnetcore/issues/53996
+        //Navigation.NavigateTo(ReturnUrl,true);
+        RedirectTo(HttpContext, ReturnUrl);
+    }
+
+    public static void RedirectTo(HttpContext? httpContext, string redirectionUrl)
+    {
+        ArgumentNullException.ThrowIfNull(httpContext);
+
+        httpContext.Response.Headers.Append("blazor-enhanced-nav-redirect-location", redirectionUrl);
+        httpContext.Response.StatusCode = 200;
+    }
+}
