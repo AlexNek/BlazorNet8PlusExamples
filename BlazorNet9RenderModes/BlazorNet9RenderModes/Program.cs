@@ -9,7 +9,11 @@ namespace BlazorNet9RenderModes
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddScoped<ICounterStateService, CounterStateServer>();
+            builder.Services.AddSingleton<ICounterStateService, CounterStateServer>();
+
+            // Scoped service will be recreated for each render mode. Better for user but not for the Demo
+            //builder.Services.AddScoped<ICounterStateService, CounterStateServer>();
+
             // Add services to the container.
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents()

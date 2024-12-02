@@ -6,15 +6,15 @@ This repository complements the concepts covered in the "[Blazor for Developers]
 
 **Key Features:**
 
-* **Hands-on Learning:** Experiment with different render modes (WebAssembly, Server-Side Rendering (SSR), and Hybrid) to understand their nuances and choose the best fit for your project.
-* **Authentication Strategies:**  Explore securing your Blazor applications with both Microsoft Identity and custom mechanisms, giving you more flexibility.
-* **Detailed Explanations:** Gain insights into the underlying concepts and rationale behind each approach, empowering informed decision-making.
+- **Hands-on Learning:** Experiment with different render modes (WebAssembly, Server-Side Rendering (SSR), and Hybrid) to understand their nuances and choose the best fit for your project. [Demo 1](https://blazornet9rendermodes.azurewebsites.net)
+ **Authentication Strategies:**  Explore securing your Blazor applications with both Microsoft Identity and custom mechanisms, giving you more flexibility.
+- **Detailed Explanations:** Gain insights into the underlying concepts and rationale behind each approach, empowering informed decision-making.
 
 **By exploring this repository, you'll be able to:**
 
-* Bridge theory with practice: Apply the concepts from "[Blazor for Developers](https://github.com/AlexNek/Blazor-for-You/blob/master/ForDevelopers/readme.md)" article to build real Blazor applications.
-* Make informed decisions about render modes and authentication approaches.
-* Enhance your overall Blazor development skills with practical experience.
+- Bridge theory with practice: Apply the concepts from "[Blazor for Developers](https://github.com/AlexNek/Blazor-for-You/blob/master/ForDevelopers/readme.md)" article to build real Blazor applications.
+- Make informed decisions about render modes and authentication approaches.
+- Enhance your overall Blazor development skills with practical experience.
 
 
 ### Render Modes
@@ -67,7 +67,7 @@ The main pages of this examples are:
 
 
 ## Getting Started
-
+I have added a clear all function to the server counter service.
 1. Clone this repository.
 2. Open the solution in your preferred IDE (e.g., Visual Studio, Visual Studio Code).
 3. Select as main one of render mode project.
@@ -83,7 +83,10 @@ When you change Current count by pressing the button `Click me` you can see that
 
 It is possible to simulate button press in SSR mode too. You can see that two different counters (2,3) could be changed independely with page refresh.
 
->** Note:** Be aware that `OnInitialAsync' is called twice by interactive components. Use cache or render mode checking to prevent possible duplicate API calls.
+>**Note 1:** Be aware that `OnInitialAsync' is called twice by interactive components. Use cache or render mode checking to prevent possible duplicate API calls.
+
+>**Note 2:** I have added a `clear all` function to the server counter service. But it is better to play with the local instance.
+
 
 ### Counter page mode transition observation
 More interesting is when you switch pages from one rendering mode to another.  
