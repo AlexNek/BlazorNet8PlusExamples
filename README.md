@@ -1,4 +1,5 @@
 ## Blazor .NET 8+ Examples: A Comprehensive Guide
+**[German version](https://github.com/AlexNek/BlazorNet8PlusExamples/readme-de.md)**
 
 ### Overview
 
@@ -78,7 +79,7 @@ Explore the different components and render modes showcased in the `Home` page. 
 ![image](docu/images/render-modes.png)
 
 Try to refresh the page and observe how render mode are changed for each counter component. You can see that first mode will be Static Server-Side Rendering (SSR) and then components will be switched to desired render mode.
-Try to click counter button for components 1,4,5,6. You can see that button press will only work in interactive components without page refresh. Note that the counter initialization is called twice in interactive server mode: once during prerendering with InteractiveAuto and Interactive Client together, and once by interaction start. Wasm counters are used after prerendering client services, not server services, that is why init count is one.
+Try to click counter button for components 1,4,5,6. You can see that button press will only work in interactive components without page refresh. Note that the counter initialization is called twice in interactive server mode: once during prerendering with InteractiveAuto and Interactive Client together, and once by interaction start. Wasm counters are used after prerendering client services, not server services, that is why init count is show one. But `OnInitialAsync` is called twice: once on the server and once on the client.
 When you change Current count by pressing the button `Click me` you can see that Server counter service preserve his state but client counter service initialized again.
 
 It is possible to simulate button press in SSR mode too. You can see that two different counters (2,3) could be changed independely with page refresh.
@@ -98,7 +99,7 @@ Try to switch 2->1 and 3->1. You can see that component with auto render mode st
 
 Interactive Auto render mode in Blazor .NET 8+ works as follows:
 
-1. Initial render: The component is first rendered using InteractiveServer mode, providing immediate interactivity via a WebSocket connection.
+1. Initial render: The component is first rendered using InteractiveServer mode, establishing a SignalR connection (which typically uses WebSockets) for interactivity.
 
 2. Background loading: While the component is interactive on the server, the .NET runtime and app bundle for WebAssembly are downloaded and cached client-side.
 
@@ -145,9 +146,9 @@ Choosing the correct render mode in Blazor can be challenging. Here's a breakdow
   - Interactive (both Server and WebAssembly): Called after the component has rendered interactively and the UI has finished updating.
 
 - JavaScript Interop
-  - SSR: Limited functionality. Can't interact with the DOM or perform client-side operations.
-  - Interactive: Fully functional. Allows for DOM manipulation and client-side scripting.
-
+  - SSR: Limited during initial render. Can't interact with DOM or perform client-side operations server-side, but can include JavaScript for client execution post-load.
+  - Interactive: Fully functional. Allows for real-time DOM manipulation, client-side scripting, and bidirectional C#-JavaScript communication.
+  
 - NavigationManager
   - SSR: Limited functionality. Can't perform client-side navigation, but can access current URL.
   - Interactive: Fully functional. Supports client-side navigation and URL manipulation.
@@ -167,7 +168,6 @@ Choosing the correct render mode in Blazor can be challenging. Here's a breakdow
 
 > **Note 1:** Be aware that `OnInitialized...` could be called twice.
 
-Understanding these limitations helps in designing components that work effectively across different render modes, ensuring optimal performance and functionality in Blazor applications.
 
 ### Navigation Manager .NET 9.0 changes
 
@@ -186,7 +186,9 @@ It's important to note that while this navigation works, it's still considered a
 
 ## Custom authentication example
 
-In this example I try to show some render mode limitations. From .NET 8.0 version we could create project with server and client sides and could switch rendering modes.
+In this example, I highlight some of the limitations associated with different render modes. Starting from .NET 8.0, it's now possible to create projects that seamlessly integrate both server-side and client-side functionality, allowing developers to switch between rendering modes dynamically. While this flexibility is a significant improvement, it comes with a challenge: in certain scenarios, you may need to synchronize data between the server and client, which can introduce complexity to your application.
+
+
 ![image](docu/images/auth-nologin.png)
 
 ### User info serialization
@@ -202,8 +204,7 @@ internal sealed class PersistingRevalidatingAuthenticationStateProvider : Revali
     private readonly PersistentComponentState _state;
   
     public PersistingRevalidatingAuthenticationStateProvider(ILoggerFactory loggerFactory,
-    
-    IServiceScopeFactory serviceScopeFactory,...): base(loggerFactory)
+    PersistentComponentState persistentComponentState, ...): base(loggerFactory)
     {
       ...
       _state = persistentComponentState
