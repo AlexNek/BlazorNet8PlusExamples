@@ -1,0 +1,40 @@
+﻿@page "/weather-ssr"
+@inject IJSRuntime JSRuntime
+
+<div class="weather-widget">
+    <h3>Weather Widget (SSR Mode)</h3>
+
+    <button onclick="setText('Hello from JavaScript!')">Call JavaScript</button>
+
+    <!-- Pre-rendered server-side content -->
+    <div>
+        Server Time: @DateTime.Now
+        <br />
+        Temperature: @_temperature°C
+    </div>
+    <div id="output"></div>
+
+    <!-- This script will be executed during initial render -->
+    <script>
+        console.log('This logs during initial SSR render');
+        window.onload = function() {
+            console.log('This executes after hydration');
+        }
+    </script>
+</div>
+
+@code {
+    private double _temperature = 25.0;
+
+    // This will be queued for execution after hydration
+    private async Task ShowAlertAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("alert", "This alert is queued!");
+    }
+
+    // This will be queued for execution after hydration
+    private async Task LogToConsole()
+    {
+        await JSRuntime.InvokeVoidAsync("console.log", "This log is queued!");
+    }
+}
