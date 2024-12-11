@@ -1,5 +1,5 @@
 ## Blazor .NET 8+ Examples: A Comprehensive Guide
-**[German version](https://github.com/AlexNek/BlazorNet8PlusExamples/readme-de.md)**
+**[German version](https://github.com/AlexNek/BlazorNet8PlusExamples/blob/master/readme-de.md)**
 
 ### Overview
 
